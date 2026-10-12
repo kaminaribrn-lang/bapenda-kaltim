@@ -1,0 +1,113 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#3174
+    [34mall[39m: [
+      [34;4mApp\Models\User[39;24m {#7645
+        [34mid[39m: [35m1[39m,
+        [34memail[39m: "[32msuperadmin@bapenda.go.id[39m",
+        [34musername[39m: "[32msuperadmin[39m",
+        [34mrole[39m: "[32msuper_admin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7644
+        [34mid[39m: [35m2[39m,
+        [34memail[39m: "[32madmin@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin@bapenda.go.id[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7643
+        [34mid[39m: [35m3[39m,
+        [34memail[39m: "[32msamarinda@bapenda.go.id[39m",
+        [34musername[39m: "[32msamarinda@bapenda.go.id[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7642
+        [34mid[39m: [35m4[39m,
+        [34memail[39m: "[32mbalikpapan@bapenda.go.id[39m",
+        [34musername[39m: "[32mbalikpapan@bapenda.go.id[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7641
+        [34mid[39m: [35m5[39m,
+        [34memail[39m: "[32madmin-samarinda@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-samarinda[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7640
+        [34mid[39m: [35m6[39m,
+        [34memail[39m: "[32madmin-balikpapan@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-balikpapan[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7639
+        [34mid[39m: [35m7[39m,
+        [34memail[39m: "[32madmin-kutim@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-kutim[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7638
+        [34mid[39m: [35m8[39m,
+        [34memail[39m: "[32madmin-bontang@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-bontang[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7637
+        [34mid[39m: [35m10[39m,
+        [34memail[39m: "[32madmin-paser@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-paser[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7636
+        [34mid[39m: [35m11[39m,
+        [34memail[39m: "[32madmin-kukar@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-kukar[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7635
+        [34mid[39m: [35m12[39m,
+        [34memail[39m: "[32madmin-mahulu@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-mahulu[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7634
+        [34mid[39m: [35m13[39m,
+        [34memail[39m: "[32madmin-kubar@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-kubar[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7633
+        [34mid[39m: [35m14[39m,
+        [34memail[39m: "[32madmin-ppu@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-ppu[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7632
+        [34mid[39m: [35m15[39m,
+        [34memail[39m: "[32madmin-kutai-kartanegara@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-kutai-kartanegara[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7631
+        [34mid[39m: [35m16[39m,
+        [34memail[39m: "[32madmin-kutai-timur@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-kutai-timur[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7630
+        [34mid[39m: [35m17[39m,
+        [34memail[39m: "[32madmin-kutai-barat@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-kutai-barat[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7629
+        [34mid[39m: [35m18[39m,
+        [34memail[39m: "[32madmin-penajam-paser-utara@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-penajam-paser-utara[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+      [34;4mApp\Models\User[39;24m {#7628
+        [34mid[39m: [35m19[39m,
+        [34memail[39m: "[32madmin-berau@bapenda.go.id[39m",
+        [34musername[39m: "[32madmin-berau[39m",
+        [34mrole[39m: "[32madmin[39m",
+      },
+    ],
+  }
+

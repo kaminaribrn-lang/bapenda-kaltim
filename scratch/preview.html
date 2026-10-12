@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Kaltim Map Preview</title>
+<style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; margin: 0; padding: 20px; }
+    .container { display: flex; gap: 20px; align-items: flex-start; justify-content: center; width: 100%; max-width: 1400px; }
+    .map-wrapper { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex: 1; }
+    svg { display: block; max-height: 800px; width: 100%; height: auto; }
+    img { max-height: 800px; width: auto; object-fit: contain; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex: 1; }
+</style>
+</head>
+<body>
+    <h2 id="header">Loading...</h2>
+    <div class="container">
+        <div class="map-wrapper" id="map-container">
+            <!-- SVG will go here -->
+        </div>
+        <img src="./Map kaltim.jpg" onerror="this.style.display='none'" alt="Reference Map">
+    </div>
+
+    <script>
+        const colors = ['#fca5a5', '#fdba74', '#fcd34d', '#fef08a', '#d9f99d', '#86efac', '#6ee7b7', '#5eead4', '#7dd3fc', '#93c5fd'];
+        
+        fetch('./output_smooth.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('header').innerText = `Source: ${data.source} | viewBox: ${data.viewBox}`;
+                
+                let svg = `<svg viewBox="${data.viewBox}" xmlns="http://www.w3.org/2000/svg">`;
+                
+                // Draw regions
+                let i = 0;
+                for (const [id, region] of Object.entries(data.regions)) {
+                    const fill = colors[i % colors.length];
+                    svg += `<path d="${region.d}" fill="${fill}" stroke="#ffffff" stroke-width="1.2" />`;
+                    svg += `<text x="${region.centroid[0]}" y="${region.centroid[1]}" font-size="9" font-weight="bold" text-anchor="middle" fill="#1f2937">${region.label}</text>`;
+                    i++;
+                }
+                
+                // Draw markers
+                for (const [id, marker] of Object.entries(data.markers)) {
+                    svg += `<circle cx="${marker.ix}" cy="${marker.iy}" r="5" fill="#dc2626" />`;
+                    svg += `<text x="${marker.ix + 8}" y="${marker.iy + 3}" font-size="10" font-weight="bold" fill="#dc2626">${id}</text>`;
+                }
+                
+                svg += `</svg>`;
+                document.getElementById('map-container').innerHTML = svg;
+            })
+            .catch(err => {
+                document.getElementById('header').innerText = `Error loading JSON: ${err}`;
+            });
+    </script>
+</body>
+</html>

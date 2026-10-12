@@ -1,0 +1,13 @@
+<?php
+namespace App\Policies;
+use App\Models\Ppid;
+use App\Models\User;
+class PpidPolicy {
+    public function viewAny(User $user) { return $user->isSuperAdmin() || $user->isAdmin(); }
+    public function view(User $user, Ppid $model) { return $user->isSuperAdmin() || $user->isAdmin(); }
+    public function create(User $user) { return $user->isSuperAdmin() || $user->isAdmin(); }
+    public function update(User $user, Ppid $model) { return $user->isSuperAdmin() || $user->isAdmin(); }
+    public function delete(User $user, Ppid $model) { return $user->isSuperAdmin() || $user->isAdmin(); }
+    public function restore(User $user, Ppid $model) { return $user->isSuperAdmin() || $user->isAdmin(); }
+    public function forceDelete(User $user, Ppid $model) { return $user->isSuperAdmin() || $user->isAdmin(); }
+}

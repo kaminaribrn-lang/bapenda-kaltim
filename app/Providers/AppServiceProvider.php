@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        \BezhanSalleh\LanguageSwitch\LanguageSwitch::configureUsing(function (\BezhanSalleh\LanguageSwitch\LanguageSwitch $switch) {
+            $switch
+                ->locales(['id', 'en'])
+                ->labels([
+                    'id' => 'Indonesia',
+                    'en' => 'English',
+                ])
+                ->visible(fn () => false);
+        });
+
+        // Semua RichEditor: gambar (unggah) dan blok video.
+        \Filament\Forms\Components\RichEditor::configureUsing(function (\Filament\Forms\Components\RichEditor $editor) {
+            $editor
+                ->fileAttachmentsDisk('public')
+                ->fileAttachmentsDirectory('editor/images')
+                ->fileAttachmentsVisibility('public')
+                ->resizableImages()
+                ->customBlocks(\App\Support\RichContent::customBlocks());
+        });
+    }
+}
