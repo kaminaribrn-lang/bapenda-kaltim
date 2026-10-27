@@ -31,6 +31,14 @@
                     </span>
                 </div>
 
+                @if($fallbackDate ?? null)
+                    <div class="mb-6 rounded-2xl border border-primary/20 bg-primary-light px-4 py-3 text-sm text-text-base">
+                        Tidak ada agenda pada hari ini ({{ \Carbon\Carbon::today()->translatedFormat('d F Y') }}).
+                        Menampilkan agenda {{ \Carbon\Carbon::parse($fallbackDate)->isFuture() ? 'terdekat berikutnya' : 'terakhir' }}
+                        pada <strong>{{ \Carbon\Carbon::parse($fallbackDate)->translatedFormat('d F Y') }}</strong>.
+                    </div>
+                @endif
+
                 <div class="mb-6 rounded-2xl border border-border-base bg-bg-base p-3 md:p-4">
                     <form method="GET" class="flex flex-col md:flex-row md:items-end gap-3">
                         <div class="flex-1 min-w-[180px]">
@@ -97,6 +105,12 @@
                         </div>
                         <h3 class="font-heading font-bold text-base text-text-base mb-2">Tidak Ada Agenda</h3>
                         <p class="font-body text-text-muted text-sm max-w-md mx-auto">Belum ada agenda yang sesuai dengan pencarian atau tanggal yang dipilih.</p>
+                        @if($previousAgendaDate ?? null)
+                            <a href="{{ route('portal.informasi.agenda-kerja', ['website' => $website->slug, 'start_date' => $previousAgendaDate, 'end_date' => $previousAgendaDate]) }}"
+                               class="mt-5 inline-flex items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-surface hover:opacity-90 transition">
+                                Lihat agenda terakhir ({{ \Carbon\Carbon::parse($previousAgendaDate)->translatedFormat('d F Y') }})
+                            </a>
+                        @endif
                     </div>
                 @endif
             </div>

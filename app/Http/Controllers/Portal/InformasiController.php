@@ -58,9 +58,48 @@ class InformasiController extends Controller
 
         $agendas = $query->orderByDesc('schedule')->get();
 
+        // Halaman dibuka tanpa filter dan hari ini kosong: tampilkan tanggal agenda terakhir yang tersedia
+        // (bila belum ada agenda lampau sama sekali, pakai agenda terdekat yang akan datang).
+        $fallbackDate = null;
+        $isDefaultView = $search === '' && ! $request->filled('start_date') && ! $request->filled('end_date');
+
+        if ($agendas->isEmpty() && $isDefaultView) {
+            $nearest = Agenda::withoutGlobalScopes()
+                ->where('website_id', $website->id)
+                ->where('schedule', '<=', Carbon::today()->endOfDay())
+                ->orderByDesc('schedule')
+                ->first()
+                ?? Agenda::withoutGlobalScopes()
+                    ->where('website_id', $website->id)
+                    ->where('schedule', '>', Carbon::today()->endOfDay())
+                    ->orderBy('schedule')
+                    ->first();
+
+            if ($nearest) {
+                $fallbackDate = $nearest->schedule->toDateString();
+                $startDate = $endDate = $fallbackDate;
+                $agendas = Agenda::withoutGlobalScopes()
+                    ->where('website_id', $website->id)
+                    ->whereBetween('schedule', [Carbon::parse($fallbackDate)->startOfDay(), Carbon::parse($fallbackDate)->endOfDay()])
+                    ->orderByDesc('schedule')
+                    ->get();
+            }
+        }
+
+        // Saat tanggal pilihan kosong, siapkan tautan ke agenda terakhir sebelum tanggal itu.
+        $previousAgendaDate = null;
+        if ($agendas->isEmpty() && ! empty($startDate)) {
+            $previousAgendaDate = Agenda::withoutGlobalScopes()
+                ->where('website_id', $website->id)
+                ->where('schedule', '<', Carbon::parse($startDate)->startOfDay())
+                ->orderByDesc('schedule')
+                ->value('schedule');
+            $previousAgendaDate = $previousAgendaDate ? Carbon::parse($previousAgendaDate)->toDateString() : null;
+        }
+
         return view('portal.informasi.agenda-kerja', array_merge(
             $this->getCommonData($website),
-            compact('agendas', 'search', 'startDate', 'endDate')
+            compact('agendas', 'search', 'startDate', 'endDate', 'fallbackDate', 'previousAgendaDate')
         ));
     }
 
